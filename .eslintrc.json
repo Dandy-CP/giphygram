@@ -1,0 +1,21 @@
+{
+  "root": true,
+  "extends": [
+    "airbnb-typescript/base",
+    "plugin:react/recommended",
+    "plugin:@next/next/recommended",
+    "next",
+    "prettier"
+  ],
+  "overrides": [],
+  "parserOptions": {
+    "project": "./tsconfig.json"
+  },
+  "plugins": ["react", "prettier"],
+  "rules": {
+    "prettier/prettier": "error",
+    "arrow-body-style": "off",
+    "quotes": ["error", "single", "avoid-escape"],
+    "react-hooks/exhaustive-deps": "off"
+  }
+}
