@@ -106,7 +106,16 @@ const VerifiedChannel = ({
             <FeaturedWrap>
               {dataContentChannel.map((gif) => (
                 <Content key={gif.id}>
-                  <Link href={`${profile}/?content=${gif.id}`} scroll={false}>
+                  <Link
+                    href={{
+                      pathname: '/[profile]',
+                      query: { profile: `${profile}`, content: `${gif.id}` },
+                    }}
+                    as={{
+                      pathname: `/c/${gif.id}`,
+                    }}
+                    scroll={false}
+                  >
                     <ContentOverlay>
                       <FontAwesomeIcon icon={faLink} size={'xl'} />
                       <FontAwesomeIcon icon={faHeart} size={'xl'} /> <p>0</p>

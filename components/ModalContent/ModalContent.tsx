@@ -46,7 +46,7 @@ export function ModalContent({ children, query }: IModal) {
         {profile && (
           <CloseButton
             onClick={() => {
-              router.replace(`/${query}`, undefined, { scroll: false });
+              router.replace(`${query}`, undefined, { scroll: false });
               handleOnClose();
             }}
           >

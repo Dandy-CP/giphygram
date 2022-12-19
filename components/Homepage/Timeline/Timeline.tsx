@@ -73,7 +73,13 @@ const Timeline = () => {
               </>
             ) : (
               <>
-                <Link href={`/${data.user.username}`}>
+                <Link
+                  href={{
+                    pathname: '/channel/[profile]',
+                    query: { profile: `${data.user.username}` },
+                  }}
+                  as={`/${data.user.username}`}
+                >
                   <Image
                     src={data.user.avatar_url}
                     width={40}
@@ -82,7 +88,13 @@ const Timeline = () => {
                   />
                 </Link>
 
-                <Link href={`/${data.user.username}`}>
+                <Link
+                  href={{
+                    pathname: '/channel/[profile]',
+                    query: { profile: `${data.user.username}` },
+                  }}
+                  as={`/${data.user.username}`}
+                >
                   {data.user.display_name === '' ? (
                     <h1>
                       {data.user.username}

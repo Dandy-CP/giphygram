@@ -48,10 +48,12 @@ const Navbar = () => {
           <p>Search</p>
         </ListMenu>
 
-        <ListMenu>
-          <FontAwesomeIcon icon={faCompass} />
-          <p>Explore</p>
-        </ListMenu>
+        <Link href={'/explore'}>
+          <ListMenu>
+            <FontAwesomeIcon icon={faCompass} />
+            <p>Explore</p>
+          </ListMenu>
+        </Link>
 
         <ListMenu>
           <FontAwesomeIcon icon={faUser} />
