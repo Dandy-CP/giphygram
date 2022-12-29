@@ -6,7 +6,7 @@ import {
 
 import trendingGIFs from './reducer/setTrendingGIFs';
 import InfiniteScroll from './reducer/setInfiniteScroll';
-import setGetContentByID from './reducer/setGetContentByID';
+import getContentByID from './reducer/setGetContentByID';
 import channelUser from './reducer/setChannel';
 import contentChannel from './reducer/setContentChannel';
 import checkConnection from './reducer/setCheckConection';
@@ -15,7 +15,7 @@ export const store = configureStore({
   reducer: {
     ConnectionStatus: checkConnection,
     TrendingGIFs: trendingGIFs,
-    contentByID: setGetContentByID,
+    contentByID: getContentByID,
     Offset: InfiniteScroll,
     Channel: channelUser,
     ContentChannel: contentChannel,

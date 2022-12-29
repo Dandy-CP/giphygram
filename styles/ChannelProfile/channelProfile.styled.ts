@@ -129,10 +129,24 @@ export const Content = styled.div`
   position: relative;
 `;
 
+export const Contents = styled.div`
+  position: relative;
+`;
+
 export const ContentOverlay = styled.div`
   display: none;
 
   ${Content}:hover & {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    background: rgba(0, 0, 0, 0.5);
+    width: 100%;
+    height: 100%;
+  }
+
+  ${Contents}:hover & {
     display: flex;
     justify-content: center;
     align-items: center;

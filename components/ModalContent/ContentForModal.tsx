@@ -44,12 +44,16 @@ const ContentForModal = () => {
   const [copyEmbedUrl, setCopyEmbedUrl] = useState(false);
 
   let router = useRouter();
-  let content = router.query.content;
+  const { content } = router.query;
 
   const dispatch = useDispatch();
   const { contentByID } = useSelector(getDataContentByIdState);
 
   useEffect(() => {
+    if (!content) {
+      return;
+    }
+
     dispatch(setGetContentByIdAction(content, false));
   }, [dispatch, content]);
 
