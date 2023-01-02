@@ -5,14 +5,12 @@ import { UserAuth } from '../../config/context/AuthContext';
 
 import {
   ButtonSignup,
-  SignupWithFacebook,
   SignupWithGoogle,
   ErrorMsg,
   ButtonSignupDisable,
 } from '../../styles/Login/login.styled';
 
 import GoogleLogo from '../../public/icons/GoogleLogo.png';
-import FacebookLogo from '../../public/icons/FacebookLogo.png';
 
 interface IFirstAuthWithGoogle {
   userSignUpWithGoogle: any;
@@ -88,10 +86,6 @@ const Signup = ({ userSignUpWithGoogle }: IFirstAuthWithGoogle) => {
         <Image src={GoogleLogo} width={35} alt="GoogleLogo" />
         <p>Sign Up With Google</p>
       </SignupWithGoogle>
-      <SignupWithFacebook>
-        <Image src={FacebookLogo} width={35} alt="FacebookLogo" />
-        <p>Log In With Facebook</p>
-      </SignupWithFacebook>
     </>
   );
 };

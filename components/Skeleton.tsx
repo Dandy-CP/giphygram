@@ -63,7 +63,7 @@ export const ContentChannelSkeleton = ({ count }: ICount) => {
         {Array(count)
           .fill(0)
           .map((_, index) => (
-            <Skeleton width={322.797} height={300} key={index} />
+            <Skeleton width={322} height={300} key={index} />
           ))}
       </WrapSkeleton>
     </SkeletonTheme>

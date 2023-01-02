@@ -21,6 +21,7 @@ export const WrapChannel = styled.div`
 export const ChannelInfo = styled.div`
   display: flex;
   justify-content: center;
+  align-items: center;
 `;
 
 export const ChannelBanner = styled.div`

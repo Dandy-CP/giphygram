@@ -62,8 +62,8 @@ export const TogleSwitch = styled.div`
   align-items: center;
   width: 400px;
   height: 42px;
-  margin-top: 30px;
-  margin-bottom: 30px;
+  margin-top: 50px;
+  margin-bottom: 35px;
   background-color: #16181c;
   border-radius: 50px;
 `;
@@ -71,6 +71,7 @@ export const TogleSwitch = styled.div`
 export const TogleButtonLogin = styled.button`
   width: 200px;
   height: 42px;
+  color: white;
   font-size: 1rem;
   font-weight: bold;
   border-radius: 50px;
@@ -103,6 +104,7 @@ export const ButtonLogin = styled.button`
   height: 45px;
   margin-top: 10px;
   border: transparent;
+  color: white;
   font-size: 1.2rem;
   font-weight: bold;
   border-radius: 5px;
@@ -182,10 +184,6 @@ export const LoginWithGoogle = styled.div`
   }
 `;
 
-export const LoginWithFacebook = styled(LoginWithGoogle)`
-  margin-top: 10px;
-`;
-
 export const GuestLogin = styled.p`
   font-size: 1rem;
   font-weight: bold;
@@ -214,8 +212,6 @@ export const GuestLogin = styled.p`
 `;
 
 export const SignupWithGoogle = styled(LoginWithGoogle)``;
-
-export const SignupWithFacebook = styled(LoginWithFacebook)``;
 
 export const ErrorMsg = styled.div`
   position: absolute;

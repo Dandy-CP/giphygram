@@ -16,14 +16,12 @@ import {
   TogleButtonSignUp,
   ForgotPass,
   LoginWithGoogle,
-  LoginWithFacebook,
   ErrorMsg,
   ButtonLoginDisable,
 } from '../../styles/Login/login.styled';
 
 import GoogleLogo from '../../public/icons/GoogleLogo.png';
-import FacebookLogo from '../../public/icons/FacebookLogo.png';
-import Logo from '../../public/icons/LogoLogin.png';
+import Logo from '../../public/icons/logonew.png';
 
 interface IToggle {
   toggle: any;
@@ -90,7 +88,7 @@ const Login = ({ toggle, signup, login }: IToggle) => {
           </ErrorMsg>
         )}
         <FormLogin>
-          <Image src={Logo} width={450} alt="logo" draggable="false" />
+          <Image src={Logo} width={250} alt="logo" draggable="false" />
 
           <TogleSwitch>
             <TogleButtonLogin
@@ -141,11 +139,6 @@ const Login = ({ toggle, signup, login }: IToggle) => {
                 <Image src={GoogleLogo} width={35} alt="GoogleLogo" />
                 <p>Log In With Google</p>
               </LoginWithGoogle>
-
-              <LoginWithFacebook>
-                <Image src={FacebookLogo} width={35} alt="FacebookLogo" />
-                <p>Log In With Facebook</p>
-              </LoginWithFacebook>
             </>
           )}
 
