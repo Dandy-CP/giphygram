@@ -41,4 +41,8 @@ export const WrapSkeleton = styled.div`
   display: flex;
   flex-wrap: wrap;
   gap: 15px;
+
+  @media (-webkit-min-device-pixel-ratio: 1.25) {
+    width: 70%;
+  }
 `;

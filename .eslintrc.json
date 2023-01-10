@@ -16,6 +16,7 @@
     "prettier/prettier": "error",
     "arrow-body-style": "off",
     "quotes": ["error", "single", "avoid-escape"],
-    "react-hooks/exhaustive-deps": "off"
+    "react-hooks/exhaustive-deps": "off",
+    "endOfLine": "auto"
   }
 }

@@ -207,6 +207,7 @@ export const GuestLogin = styled.p`
       hsl(55deg 100% 50%) 100%
     );
     background-clip: text;
+    -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
   }
 `;

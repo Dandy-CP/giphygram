@@ -17,6 +17,7 @@ import { ThemeProvider } from 'styled-components';
 
 import NProgress from 'nprogress';
 import '../styles/nprogress.css';
+import Head from 'next/head';
 
 NProgress.configure({ showSpinner: false });
 Router.events.on('routeChangeStart', () => NProgress.start());
@@ -34,6 +35,12 @@ export default function App({ Component, pageProps }: AppProps) {
     <Provider store={store}>
       <AuthContextProvider>
         <ThemeProvider theme={theme}>
+          <Head>
+            <meta
+              name="viewport"
+              content="width=device-width, initial-scale=1.0, maximum-scale=1.0,user-scalable=0"
+            />
+          </Head>
           <GlobalStyle />
           <Layout>
             <CheckConnection />

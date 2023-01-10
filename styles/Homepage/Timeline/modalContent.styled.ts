@@ -67,6 +67,7 @@ export const ContentDescription = styled.div`
   width: 100%;
   height: auto;
   padding-top: 15px;
+  overflow-x: hidden;
 
   hr {
     border-bottom: 0px;
@@ -77,16 +78,29 @@ export const UserChannel = styled.div`
   display: flex;
   align-items: center;
   margin-left: 20px;
+  cursor: pointer;
 
   img {
     border-radius: 50px;
     margin-right: 15px;
   }
+
+  h3 {
+    @media (-webkit-min-device-pixel-ratio: 1.25) {
+      font-size: 0.9rem;
+    }
+  }
 `;
 
 export const ContentInfo = styled.div`
-  overflow: scroll;
+  overflow: hidden;
   margin-left: 20px;
+
+  p {
+    @media (-webkit-min-device-pixel-ratio: 1.25) {
+      font-size: 0.9rem;
+    }
+  }
 `;
 
 export const CopyContent = styled.div`
@@ -95,9 +109,13 @@ export const CopyContent = styled.div`
   width: 100%;
   margin-bottom: 50px;
 
-  p {
+  h3 {
     font-size: 1.1rem;
     font-weight: 600;
+
+    @media (-webkit-min-device-pixel-ratio: 1.25) {
+      font-size: 1rem;
+    }
   }
 
   button {
@@ -128,6 +146,10 @@ export const CopyContent = styled.div`
       rgba(75, 53, 176, 1) 100%
     );
     filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#6f3bbe",endColorstr="#4b35b0",GradientType=1);
+
+    @media (-webkit-min-device-pixel-ratio: 1.25) {
+      font-size: 0.8rem;
+    }
   }
 `;
 
@@ -135,10 +157,26 @@ export const EmbedContent = styled.div`
   width: 100%;
   margin-bottom: auto;
 
+  h3 {
+    @media (-webkit-min-device-pixel-ratio: 1.25) {
+      font-size: 1rem;
+    }
+  }
+
+  p {
+    @media (-webkit-min-device-pixel-ratio: 1.25) {
+      font-size: 0.8rem;
+    }
+  }
+
   input {
     width: 60%;
     height: 45px;
     margin-top: 10px;
+
+    @media (-webkit-min-device-pixel-ratio: 1.25) {
+      font-size: 0.8rem;
+    }
   }
 
   button {
@@ -167,6 +205,10 @@ export const EmbedContent = styled.div`
       rgba(75, 53, 176, 1) 100%
     );
     filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#6f3bbe",endColorstr="#4b35b0",GradientType=1);
+
+    @media (-webkit-min-device-pixel-ratio: 1.25) {
+      font-size: 0.8rem;
+    }
   }
 `;
 
@@ -179,6 +221,10 @@ export const CommentSection = styled.div`
 
   h4 {
     margin-right: 20px;
+  }
+
+  @media (-webkit-min-device-pixel-ratio: 1.25) {
+    font-size: 0.9rem;
   }
 `;
 
@@ -205,9 +251,14 @@ export const CommentInput = styled.div`
     height: 30px;
     font-size: 0.9rem;
     resize: none;
+    overflow: hidden;
 
     :focus {
       outline: none;
+    }
+
+    @media (-webkit-min-device-pixel-ratio: 1.25) {
+      font-size: 0.8rem;
     }
   }
 
@@ -219,5 +270,9 @@ export const CommentInput = styled.div`
     font-weight: 600;
     margin-left: 10px;
     cursor: pointer;
+
+    @media (-webkit-min-device-pixel-ratio: 1.25) {
+      font-size: 0.8rem;
+    }
   }
 `;

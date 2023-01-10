@@ -10,6 +10,8 @@ import getContentByID from './reducer/setGetContentByID';
 import channelUser from './reducer/setChannel';
 import contentChannel from './reducer/setContentChannel';
 import checkConnection from './reducer/setCheckConection';
+import categories from './reducer/setCategories';
+import subCategories from './reducer/setSubCategories';
 
 export const store = configureStore({
   reducer: {
@@ -19,6 +21,8 @@ export const store = configureStore({
     Offset: InfiniteScroll,
     Channel: channelUser,
     ContentChannel: contentChannel,
+    CategoriesContent: categories,
+    SubCategories: subCategories,
   },
 });
 

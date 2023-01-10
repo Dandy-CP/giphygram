@@ -54,7 +54,7 @@ const ChannelSuggestion = () => {
             {list.display_name === '' ? (
               <Link href={`/${list.username}`}>
                 <p>
-                  {list.username}
+                  {list.username.slice(0, 25)}
                   {list.is_verified === true ? (
                     <Image
                       src={verifiedBadge}
@@ -63,8 +63,8 @@ const ChannelSuggestion = () => {
                       height={10}
                       draggable="false"
                       style={{
-                        width: '20px',
-                        height: '20px',
+                        width: '15px',
+                        height: '15px',
                         marginLeft: '5px',
                       }}
                     />
@@ -76,7 +76,7 @@ const ChannelSuggestion = () => {
             ) : (
               <Link href={`/${list.username}`}>
                 <p>
-                  {list.display_name}
+                  {list.display_name.slice(0, 25)}
                   {list.is_verified === true ? (
                     <Image
                       src={verifiedBadge}
@@ -85,8 +85,8 @@ const ChannelSuggestion = () => {
                       height={10}
                       draggable="false"
                       style={{
-                        width: '20px',
-                        height: '20px',
+                        width: '15px',
+                        height: '15px',
                         marginLeft: '5px',
                       }}
                     />

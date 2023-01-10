@@ -15,6 +15,11 @@ export const WrapChannel = styled.div`
     margin-bottom: 0px;
     margin-top: 50px;
     width: 79%;
+
+    @media (-webkit-min-device-pixel-ratio: 1.25) {
+      width: 70%;
+      margin-left: 15%;
+    }
   }
 `;
 
@@ -22,6 +27,13 @@ export const ChannelInfo = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+
+  img {
+    @media (-webkit-min-device-pixel-ratio: 1.25) {
+      width: 150px;
+      height: 150px;
+    }
+  }
 `;
 
 export const ChannelBanner = styled.div`
@@ -50,6 +62,10 @@ export const ContentToggle = styled.div`
     background: transparent;
     border: none;
     border-top: 1px solid white;
+
+    @media (-webkit-min-device-pixel-ratio: 1.25) {
+      font-size: 0.8rem;
+    }
   }
 `;
 
@@ -62,9 +78,27 @@ export const ChannelDesc = styled.div`
     align-items: center;
     margin-bottom: 0px;
     font-size: 1.5rem;
+
+    @media (-webkit-min-device-pixel-ratio: 1.25) {
+      font-size: 1.2rem;
+    }
+  }
+
+  p {
+    @media (-webkit-min-device-pixel-ratio: 1.25) {
+      font-size: 0.9rem;
+    }
+  }
+
+  a {
+    @media (-webkit-min-device-pixel-ratio: 1.25) {
+      font-size: 0.9rem;
+    }
   }
 
   img {
+    width: 25px;
+    height: 25px;
     margin-left: 10px;
   }
 `;
@@ -76,47 +110,35 @@ export const OtherChannel = styled.div`
   position: fixed;
   margin-right: 40px;
   right: 0;
+
+  @media (-webkit-min-device-pixel-ratio: 1.25) {
+    margin-right: 0px;
+  }
 `;
 
 export const FeaturedContent = styled.div`
-  /* display: flex;
-  width: 90%;
-  height: 100%;
-  margin-top: 50px;
-  margin-left: 200px; */
-
   width: 80%;
   height: auto;
   margin-top: 50px;
   margin-left: auto;
   margin-right: auto;
+
+  @media (-webkit-min-device-pixel-ratio: 1.25) {
+    width: 70%;
+  }
 `;
 
 export const FeaturedWrap = styled.div`
-  /* display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  width: 100%;
-  height: 100%; */
-
-  /* display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(25%, 1fr));
-  grid-template-rows: repeat(auto-fit, 25%);
-  grid-auto-flow: dense;
-  grid-gap: 1rem; */
-
-  /* columns: 3; */
-  /* column-width: 100px; */
-  /* column-count: 3; */
   height: auto;
   display: grid;
   grid-gap: 15px;
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
   grid-auto-rows: minmax(250px, 300px);
 
-  /* img:nth-child(5n) {
-    grid-column-end: span 2;
-  } */
+  @media (-webkit-min-device-pixel-ratio: 1.25) {
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    grid-auto-rows: minmax(100px, 200px);
+  }
 
   img {
     width: 100%;
@@ -160,11 +182,23 @@ export const ContentOverlay = styled.div`
   svg {
     cursor: pointer;
     margin-left: 20px;
+
+    :hover {
+      color: blueviolet;
+    }
+
+    @media (-webkit-min-device-pixel-ratio: 1.25) {
+      font-size: 1rem;
+    }
   }
 
   p {
     font-weight: 600;
     margin-left: 10px;
     font-size: 1.3rem;
+
+    @media (-webkit-min-device-pixel-ratio: 1.25) {
+      font-size: 1rem;
+    }
   }
 `;

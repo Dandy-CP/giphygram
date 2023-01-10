@@ -20,8 +20,17 @@ export const NameAndUsername = styled.div`
   h3 {
     margin-top: 10px;
     margin-bottom: 0px;
+
+    @media (-webkit-min-device-pixel-ratio: 1.25) {
+      font-size: 0.9rem;
+    }
   }
+
   p {
     margin-top: 0px;
+
+    @media (-webkit-min-device-pixel-ratio: 1.25) {
+      font-size: 0.9rem;
+    }
   }
 `;

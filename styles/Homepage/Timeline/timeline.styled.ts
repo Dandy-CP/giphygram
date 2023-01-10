@@ -17,12 +17,16 @@ export const WrapContent = styled.div`
   align-items: center;
   width: 450px;
   height: 100%;
+
+  @media (-webkit-min-device-pixel-ratio: 1.25) {
+    width: 25%;
+  }
 `;
 
 export const CardContent = styled.article`
   width: 100%;
   height: 100%;
-  padding-top: 20px;
+  padding-top: 15px;
   padding-bottom: 0px;
   margin-bottom: 30px;
   border-radius: 10px;
@@ -32,7 +36,7 @@ export const CardContent = styled.article`
 export const UserChannel = styled.header`
   display: flex;
   align-items: center;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
   margin-left: 10px;
 
   img {
@@ -48,6 +52,10 @@ export const UserChannel = styled.header`
     align-items: center;
     font-size: 0.9rem;
     cursor: pointer;
+
+    @media (-webkit-min-device-pixel-ratio: 1.25) {
+      font-size: 0.8rem;
+    }
   }
 `;
 
@@ -89,6 +97,10 @@ export const TitleContent = styled.div`
   p {
     font-size: 0.9rem;
     margin-left: 10px;
+
+    @media (-webkit-min-device-pixel-ratio: 1.25) {
+      font-size: 0.8rem;
+    }
   }
 `;
 
@@ -106,6 +118,10 @@ export const LatestComment = styled.div`
   p {
     font-size: 0.9rem;
     font-weight: 500;
+
+    @media (-webkit-min-device-pixel-ratio: 1.25) {
+      font-size: 0.8rem;
+    }
   }
 `;
 
@@ -126,9 +142,14 @@ export const InputCommnet = styled.div`
     height: 30px;
     font-size: 0.9rem;
     resize: none;
+    overflow: hidden;
 
     :focus {
       outline: none;
+    }
+
+    @media (-webkit-min-device-pixel-ratio: 1.25) {
+      font-size: 0.8rem;
     }
   }
 
@@ -140,5 +161,9 @@ export const InputCommnet = styled.div`
     font-weight: 600;
     margin-left: 10px;
     cursor: pointer;
+
+    @media (-webkit-min-device-pixel-ratio: 1.25) {
+      font-size: 0.8rem;
+    }
   }
 `;

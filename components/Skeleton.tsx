@@ -63,7 +63,13 @@ export const ContentChannelSkeleton = ({ count }: ICount) => {
         {Array(count)
           .fill(0)
           .map((_, index) => (
-            <Skeleton width={322} height={300} key={index} />
+            <>
+              {window.devicePixelRatio === 1.25 ? (
+                <Skeleton width={222} height={200} key={index} />
+              ) : (
+                <Skeleton width={322} height={300} key={index} />
+              )}
+            </>
           ))}
       </WrapSkeleton>
     </SkeletonTheme>
@@ -75,7 +81,11 @@ export const ChannelSkeleton = () => {
     <SkeletonTheme baseColor="#313131" highlightColor="#525252">
       <WrapChannel>
         <ChannelInfo>
-          <Skeleton width={200} height={200} />
+          {window.devicePixelRatio === 1.25 ? (
+            <Skeleton width={150} height={150} />
+          ) : (
+            <Skeleton width={200} height={200} />
+          )}
 
           <ChannelDesc>
             <Skeleton width={300} height={30} />
@@ -87,7 +97,11 @@ export const ChannelSkeleton = () => {
         </ChannelInfo>
 
         <ChannelBanner>
-          <Skeleton width={950} height={150} />
+          {window.devicePixelRatio === 1.25 ? (
+            <Skeleton width={700} height={150} />
+          ) : (
+            <Skeleton width={950} height={150} />
+          )}
         </ChannelBanner>
       </WrapChannel>
     </SkeletonTheme>

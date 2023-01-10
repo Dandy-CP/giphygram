@@ -7,7 +7,13 @@ import LoaderGif from '../public/icons/loader.gif';
 const PreLoader = () => {
   return (
     <Preloader>
-      <Image src={LoaderGif} width={150} alt="logo" draggable="false" />
+      <Image
+        src={LoaderGif}
+        width={150}
+        alt="logo"
+        draggable="false"
+        priority
+      />
     </Preloader>
   );
 };

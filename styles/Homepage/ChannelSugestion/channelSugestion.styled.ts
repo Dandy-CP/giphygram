@@ -3,6 +3,10 @@ import styled from 'styled-components';
 export const ContainerSugestion = styled.div`
   p {
     font-weight: 500;
+
+    @media (-webkit-min-device-pixel-ratio: 1.25) {
+      font-size: 0.9rem;
+    }
   }
 `;
 
@@ -10,7 +14,7 @@ export const ChannelWrap = styled.div``;
 
 export const Channel = styled.div`
   position: relative;
-  width: 350px;
+  width: 300px;
   display: flex;
   align-items: center;
   margin-bottom: 10px;
@@ -23,6 +27,10 @@ export const Channel = styled.div`
   p {
     display: flex;
     align-items: center;
+
+    @media (-webkit-min-device-pixel-ratio: 1.25) {
+      font-size: 0.8rem;
+    }
   }
 `;
 
@@ -38,11 +46,16 @@ export const FollowChannel = styled.div`
 `;
 
 export const Copyright = styled.div`
-  margin-top: 40px;
+  margin-top: 20px;
+
   p {
     font-size: 0.9rem;
     font-weight: 400;
     color: gray;
+
+    @media (-webkit-min-device-pixel-ratio: 1.25) {
+      font-size: 0.8rem;
+    }
   }
 
   a {
@@ -54,6 +67,10 @@ export const Copyright = styled.div`
 
     :hover {
       color: white;
+    }
+
+    @media (-webkit-min-device-pixel-ratio: 1.25) {
+      font-size: 0.8rem;
     }
   }
 `;

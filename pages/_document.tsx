@@ -33,6 +33,8 @@ export default class MyDocument extends Document {
     return (
       <Html lang="en">
         <Head>
+          <meta charSet="UTF-8" />
+          <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
           <meta name="GraphyGifs" content="Explore GIFs like socia media" />
           <link rel="icon" href="/favicon.ico" />
         </Head>
