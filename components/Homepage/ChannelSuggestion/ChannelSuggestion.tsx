@@ -34,20 +34,20 @@ const ChannelSuggestion = () => {
     return filterUnregisUser.find((channel) => channel.username === username);
   });
 
-  const getRandomChannel = (channel: any[], count: number) => {
-    const getChannel = [...channel].sort(() => 0.5 - Math.random());
+  // const getRandomChannel = (channel: any[], count: number) => {
+  //   const getChannel = [...channel].sort(() => 0.5 - Math.random());
 
-    return getChannel.slice(0, count);
-  };
+  //   return getChannel.slice(0, count);
+  // };
 
-  const resultChannelSugestion = getRandomChannel(filterDuplicateChannel, 5);
+  // const resultChannelSugestion = getRandomChannel(filterDuplicateChannel, 5);
 
   return (
     <ContainerSugestion>
       <p>Channel suggestion for you</p>
       <ChannelWrap>
         {IsFetching && <ChannelSugestionSkeleton count={5} />}
-        {resultChannelSugestion.map((list, index) => (
+        {filterDuplicateChannel.slice(0, 5).map((list, index) => (
           <Channel key={index}>
             <Image src={list.avatar_url} alt="ava" width={40} height={40} />
 

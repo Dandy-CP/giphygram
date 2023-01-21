@@ -14,7 +14,7 @@ export const Logo = styled.div`
 `;
 
 export const MenuItem = styled.div`
-  height: 50vh;
+  height: 100%;
   display: flex;
   flex-direction: column;
 `;
@@ -35,7 +35,7 @@ export const ListMenu = styled.div`
   }
 
   svg {
-    margin-left: 20px;
+    margin-left: 10px;
   }
 
   :hover {
@@ -43,8 +43,36 @@ export const ListMenu = styled.div`
   }
 `;
 
-export const ListMoreMenu = styled(ListMenu)`
-  width: 300px;
+export const ListMoreMenu = styled.div`
+  width: 210px;
+  height: 150px;
+  padding: 15px;
+  border-radius: 5px;
+  background-color: #808080;
+  margin-left: 10px;
+  margin-bottom: 10px;
+
+  p {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    margin-left: 10px;
+    font-weight: 500;
+  }
+
+  a {
+    display: flex;
+    align-items: center;
+    padding-left: 10px;
+
+    :hover {
+      background-color: #22262c;
+      border-radius: 50px;
+    }
+  }
+`;
+
+export const MoreMenu = styled.div`
+  width: 45%;
   position: absolute;
   bottom: 0;
 `;

@@ -48,27 +48,6 @@ export const ChannelBanner = styled.div`
   }
 `;
 
-export const ContentToggle = styled.div`
-  display: flex;
-  justify-content: center;
-
-  button {
-    width: 100px;
-    height: 40px;
-    margin-right: 10px;
-    color: white;
-    font-weight: 600;
-    font-size: 1rem;
-    background: transparent;
-    border: none;
-    border-top: 1px solid white;
-
-    @media (-webkit-min-device-pixel-ratio: 1.25) {
-      font-size: 0.8rem;
-    }
-  }
-`;
-
 export const ChannelDesc = styled.div`
   width: 500px;
   margin-left: 50px;
@@ -77,6 +56,7 @@ export const ChannelDesc = styled.div`
     display: flex;
     align-items: center;
     margin-bottom: 0px;
+    margin-top: 0px;
     font-size: 1.5rem;
 
     @media (-webkit-min-device-pixel-ratio: 1.25) {
@@ -180,6 +160,7 @@ export const ContentOverlay = styled.div`
   }
 
   svg {
+    font-size: 1rem;
     cursor: pointer;
     margin-left: 20px;
 
@@ -200,5 +181,38 @@ export const ContentOverlay = styled.div`
     @media (-webkit-min-device-pixel-ratio: 1.25) {
       font-size: 1rem;
     }
+  }
+`;
+
+export const UsernameProfile = styled.div`
+  display: flex;
+  align-items: center;
+
+  button {
+    margin-left: 20px;
+    height: 25px;
+    color: white;
+    font-weight: bold;
+    font-size: 0.7rem;
+    border-radius: 5px;
+    border: transparent;
+    cursor: pointer;
+    background: linear-gradient(
+      -135deg,
+      rgb(0, 231, 149) 0%,
+      rgb(0, 187, 221) 100%
+    );
+  }
+`;
+
+export const ProfileFolowingSection = styled.div`
+  display: flex;
+
+  p {
+    margin-right: 25px;
+    margin-top: 10px;
+    margin-bottom: 0px;
+    font-weight: 500;
+    cursor: pointer;
   }
 `;

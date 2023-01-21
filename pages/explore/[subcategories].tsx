@@ -12,6 +12,7 @@ import {
   GifPlaceholder,
   PlaceholderToBase64,
 } from '../../components/GifPlaceholder';
+import { ExploreSkeleton } from '../../components/Skeleton';
 
 import {
   ContainerExplore,
@@ -24,7 +25,7 @@ const Subcategories = () => {
   const { subcategories } = router.query;
 
   const dispatch = useDispatch();
-  const { dataSubCategories } = useSelector(getDataSubCategories);
+  const { dataSubCategories, isFetching } = useSelector(getDataSubCategories);
 
   console.log('gif', dataSubCategories);
 
@@ -43,6 +44,8 @@ const Subcategories = () => {
   return (
     <ContainerExplore>
       <WrapCategories>
+        {isFetching && <ExploreSkeleton count={15} />}
+
         {dataSubCategories.map((list) => (
           <Link href={`../search/${list.name_encoded}`} key={list.name_encoded}>
             <FeaturedCategories>

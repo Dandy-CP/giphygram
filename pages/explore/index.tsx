@@ -10,6 +10,7 @@ import {
   GifPlaceholder,
   PlaceholderToBase64,
 } from '../../components/GifPlaceholder';
+import { ExploreSkeleton } from '../../components/Skeleton';
 
 import {
   ContainerExplore,
@@ -19,7 +20,7 @@ import {
 
 const IndexExplore = () => {
   const dispatch = useDispatch();
-  const { dataCategories } = useSelector(getDataCategories);
+  const { dataCategories, isFetching } = useSelector(getDataCategories);
 
   console.log(dataCategories);
 
@@ -30,6 +31,8 @@ const IndexExplore = () => {
   return (
     <ContainerExplore>
       <WrapCategories>
+        {isFetching && <ExploreSkeleton count={15} />}
+
         {dataCategories.map((data) => (
           <Link href={`explore/${data.name_encoded}`} key={data.name}>
             <FeaturedCategories>

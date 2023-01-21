@@ -24,6 +24,7 @@ export function ModalContent({ children, query }: IModal) {
   let router = useRouter();
   let content = router.query.content;
   let profile = router.query.profile;
+  let search = router.query.search;
 
   const handleOnClose = () => {
     dispatch(setGetContentByIdAction(content, true));
@@ -44,6 +45,17 @@ export function ModalContent({ children, query }: IModal) {
         )}
 
         {profile && (
+          <CloseButton
+            onClick={() => {
+              router.replace(`${query}`, undefined, { scroll: false });
+              handleOnClose();
+            }}
+          >
+            <FontAwesomeIcon icon={faXmark} size="2xl" />
+          </CloseButton>
+        )}
+
+        {search && (
           <CloseButton
             onClick={() => {
               router.replace(`${query}`, undefined, { scroll: false });

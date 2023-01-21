@@ -17,6 +17,7 @@ interface IFirstAuthWithGoogle {
 }
 
 const Signup = ({ userSignUpWithGoogle }: IFirstAuthWithGoogle) => {
+  const [name, setName] = useState('');
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -32,7 +33,7 @@ const Signup = ({ userSignUpWithGoogle }: IFirstAuthWithGoogle) => {
       setUserHasSignUp(true);
 
       try {
-        await createUser(email, password, username);
+        await createUser(email, password, name, username);
       } catch (err: any) {
         setUserHasSignUp(false);
         setError(err.message);
@@ -62,14 +63,22 @@ const Signup = ({ userSignUpWithGoogle }: IFirstAuthWithGoogle) => {
 
       <input
         type="text"
+        placeholder="Name"
+        onChange={(e) => setName(e.target.value)}
+      />
+
+      <input
+        type="text"
         placeholder="Username"
         onChange={(e) => setUsername(e.target.value)}
       />
+
       <input
         type="text"
         placeholder="Email Address"
         onChange={(e) => setEmail(e.target.value)}
       />
+
       <input
         type="password"
         placeholder="Password"

@@ -13,6 +13,7 @@ import {
   signInAnonymously,
   signOut,
   onAuthStateChanged,
+  updateProfile,
 } from 'firebase/auth';
 import { setDoc, doc } from 'firebase/firestore';
 import { auth, db } from '../firebase';
@@ -29,9 +30,14 @@ export const AuthContextProvider = ({ children }: Props) => {
   const createUser = async (
     email: string,
     password: string,
+    name: string,
     username: string,
   ) => {
     const result = await createUserWithEmailAndPassword(auth, email, password);
+
+    await updateProfile(auth.currentUser!, { displayName: name }).catch((err) =>
+      console.log(err),
+    );
 
     const users: any = result.user;
     setDoc(doc(db, 'users', email), {
@@ -42,6 +48,9 @@ export const AuthContextProvider = ({ children }: Props) => {
         emailStatus: users.emailVerified,
         avatar: users.photoURL,
       },
+      posted: [],
+      following: [],
+      saved: [],
     });
   };
 
@@ -61,11 +70,14 @@ export const AuthContextProvider = ({ children }: Props) => {
         setDoc(doc(db, 'users', users.email), {
           profile: {
             name: users.displayName,
-            username: 'user-' + users.uid,
+            username: 'user-' + users.uid.slice(0, 10),
             email: users.email,
             emailStatus: users.emailVerified,
             avatar: users.photoURL,
           },
+          posted: [],
+          following: [],
+          saved: [],
         });
       } catch (err: any) {
         console.log(err.message);

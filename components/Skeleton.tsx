@@ -23,6 +23,8 @@ import {
   FollowChannel,
 } from '../styles/Homepage/ChannelSugestion/channelSugestion.styled';
 
+import { FeaturedCategories } from '../styles/explore/explore.styled';
+
 interface ICount {
   count: number;
 }
@@ -123,6 +125,20 @@ export const ChannelSugestionSkeleton = ({ count }: ICount) => {
               <Skeleton width={80} height={30} />
             </FollowChannel>
           </Channel>
+        ))}
+    </SkeletonTheme>
+  );
+};
+
+export const ExploreSkeleton = ({ count }: ICount) => {
+  return (
+    <SkeletonTheme baseColor="#313131" highlightColor="#525252">
+      {Array(count)
+        .fill(0)
+        .map((_, index) => (
+          <FeaturedCategories key={index}>
+            <Skeleton width={250} height={120} />
+          </FeaturedCategories>
         ))}
     </SkeletonTheme>
   );

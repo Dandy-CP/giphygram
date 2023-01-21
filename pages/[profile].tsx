@@ -6,11 +6,16 @@ import setTrendingGIFsAction from '../config/redux/action/trendingGIFs';
 import setChannelUser from '../config/redux/action/channel';
 import setContentChannelAction from '../config/redux/action/contentChannel';
 import setInfiniteScrollAction from '../config/redux/action/InfiniteScroll';
+import stickersContentAction from '../config/redux/action/stickersContent';
 
 import { getDataChannelState } from '../config/redux/reducer/setChannel';
 import { getDataContentChannelState } from '../config/redux/reducer/setContentChannel';
 import { getDataOffsetState } from '../config/redux/reducer/setInfiniteScroll';
 import { setResetOnPageChange } from '../config/redux/reducer/setContentChannel';
+import {
+  getDataStickersContentState,
+  setResetStickers,
+} from '../config/redux/reducer/setStickersContent';
 import {
   setVerifiedChannel,
   setUnverifiedChannel,
@@ -38,6 +43,7 @@ const Profile = () => {
     useSelector(getDataChannelState);
   const { dataContentChannel } = useSelector(getDataContentChannelState);
   const { offset, onBottom } = useSelector(getDataOffsetState);
+  const { dataStickersContent } = useSelector(getDataStickersContentState);
 
   console.log('kontent profile:', dataContentChannel);
   console.log('verified channel:', dataVerifiedChannel);
@@ -54,6 +60,7 @@ const Profile = () => {
 
     dispatch(setChannelUser(profile));
     dispatch(setContentChannelAction(profile, offset));
+    dispatch(stickersContentAction(profile, offset));
     dispatch(setInfiniteScrollAction());
   }, [dispatch, offset, profile]);
 
@@ -62,6 +69,7 @@ const Profile = () => {
       dispatch(setVerifiedChannel([]));
       dispatch(setUnverifiedChannel({}));
       dispatch(setResetOnPageChange([]));
+      dispatch(setResetStickers([]));
     };
   }, [profile]);
 
@@ -78,6 +86,7 @@ const Profile = () => {
           <UnverifiedChannel
             dataUnverifiedChannel={dataUnverifiedChannel}
             dataContentChannel={dataContentChannel}
+            dataStickersContent={dataStickersContent}
             isFetching={isFetching}
             profile={profile}
           />
@@ -85,6 +94,7 @@ const Profile = () => {
           <VerifiedChannel
             dataVerifiedChannel={dataVerifiedChannel}
             dataContentChannel={dataContentChannel}
+            dataStickersContent={dataStickersContent}
             isFetching={isFetching}
             profile={profile}
           />

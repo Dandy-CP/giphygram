@@ -1,11 +1,12 @@
 import axios from 'axios';
 import { Categories, Search } from '../../GhipyAPI/endpointGifApi';
 import { apiKey } from '../../GhipyAPI/apiKey';
-import { setSubCategories } from '../reducer/setSubCategories';
+import { setSubCategories, setIsFetching } from '../reducer/setSubCategories';
 
 const setSubCategoriesAction = (subcategories: string | string[]) => {
   return (dispatch: any) => {
     try {
+      dispatch(setIsFetching(true));
       const fetchSubCategories = async () => {
         const res = await axios(Categories, {
           params: {
@@ -30,6 +31,7 @@ const setSubCategoriesAction = (subcategories: string | string[]) => {
 
         setTimeout(() => {
           dispatch(setSubCategories(thisResultSubCategories));
+          dispatch(setIsFetching(false));
         }, 1000);
 
         thisMatchSubCategories.map(async (data) => {

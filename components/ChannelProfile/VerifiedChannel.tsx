@@ -1,4 +1,6 @@
+import { useState } from 'react';
 import Image from 'next/image';
+import Link from 'next/link';
 
 import {
   GifPlaceholder,
@@ -14,19 +16,23 @@ import {
   ChannelInfo,
   Content,
   ContentOverlay,
-  ContentToggle,
   FeaturedContent,
   FeaturedWrap,
   WrapChannel,
 } from '../../styles/ChannelProfile/channelProfile.styled';
+import {
+  Toggle,
+  ToggleGIF,
+  ToggleSticker,
+} from '../../styles/Search/search.styled';
 
 import verifiedBadge from '../../public/icons/verifiedBadge.png';
 import { ChannelSkeleton, ContentChannelSkeleton } from '../Skeleton';
-import Link from 'next/link';
 
 interface IData {
   dataVerifiedChannel: any[];
   dataContentChannel: any[];
+  dataStickersContent: any[];
   isFetching: boolean;
   profile: string | string[] | undefined;
 }
@@ -34,9 +40,12 @@ interface IData {
 const VerifiedChannel = ({
   dataVerifiedChannel,
   dataContentChannel,
+  dataStickersContent,
   isFetching,
   profile,
 }: IData) => {
+  const [toggle, setToggle] = useState(true);
+
   return (
     <>
       {dataVerifiedChannel.map((channel) => (
@@ -95,63 +104,143 @@ const VerifiedChannel = ({
 
           <hr />
 
-          <ContentToggle>
-            <button>GIFs</button>
-            <button>Stickers</button>
-          </ContentToggle>
+          <Toggle style={{ marginBottom: '0px', marginTop: '20px' }}>
+            <ToggleGIF
+              onClick={() => {
+                setToggle(true);
+              }}
+              gif={toggle}
+            >
+              GIFs
+            </ToggleGIF>
+
+            <ToggleSticker
+              onClick={() => {
+                setToggle(false);
+              }}
+              stickers={toggle}
+            >
+              Stickers
+            </ToggleSticker>
+          </Toggle>
 
           {isFetching && <ContentChannelSkeleton count={6} />}
 
           <FeaturedContent>
             <FeaturedWrap>
-              {dataContentChannel.map((gif) => (
-                <Content key={gif.id}>
-                  <Link
-                    href={{
-                      pathname: '/[profile]',
-                      query: { profile: `${profile}`, content: `${gif.id}` },
-                    }}
-                    as={{
-                      pathname: `/c/${gif.id}`,
-                    }}
-                    scroll={false}
-                  >
-                    <ContentOverlay>
-                      <FontAwesomeIcon icon={faLink} size={'xl'} />
-                      <FontAwesomeIcon icon={faHeart} size={'xl'} /> <p>0</p>
-                      <FontAwesomeIcon icon={faComment} size={'xl'} /> <p>0</p>
-                    </ContentOverlay>
-                  </Link>
+              {!toggle ? (
+                <>
+                  {dataStickersContent.map((stickers) => (
+                    <Content key={stickers.id}>
+                      <Link
+                        href={{
+                          pathname: '/[profile]',
+                          query: {
+                            profile: `${profile}`,
+                            content: `${stickers.id}`,
+                          },
+                        }}
+                        as={{
+                          pathname: `/c/${stickers.id}`,
+                        }}
+                        scroll={false}
+                      >
+                        <ContentOverlay>
+                          <FontAwesomeIcon icon={faLink} size={'xl'} />
+                          <FontAwesomeIcon icon={faHeart} size={'xl'} />
+                          <p>0</p>
+                          <FontAwesomeIcon icon={faComment} size={'xl'} />
+                          <p>0</p>
+                        </ContentOverlay>
+                      </Link>
 
-                  <Image
-                    src={
-                      gif.images.fixed_height.webp ||
-                      gif.images.fixed_height.url
-                    }
-                    sizes="auto"
-                    width={
-                      gif.images.fixed_height.width ||
-                      gif.images.fixed_height_downsampled.width
-                    }
-                    height={
-                      gif.images.fixed_height.height ||
-                      gif.images.fixed_height_downsampled.height
-                    }
-                    alt="img"
-                    blurDataURL={`data:image/svg+xml;base64,${PlaceholderToBase64(
-                      GifPlaceholder(
-                        gif.images.fixed_height.width ||
-                          gif.images.fixed_height_downsampled.width ||
-                          50,
-                        gif.images.fixed_height.height ||
-                          gif.images.fixed_height_downsampled.height ||
-                          50,
-                      ),
-                    )}`}
-                    placeholder="blur"
-                  />
-                </Content>
-              ))}
+                      <Image
+                        src={
+                          stickers.images.fixed_height.webp ||
+                          stickers.images.fixed_height.url
+                        }
+                        sizes="auto"
+                        width={
+                          stickers.images.fixed_height.width ||
+                          stickers.images.fixed_height_downsampled.width
+                        }
+                        height={
+                          stickers.images.fixed_height.height ||
+                          stickers.images.fixed_height_downsampled.height
+                        }
+                        alt="img"
+                        blurDataURL={`data:image/svg+xml;base64,${PlaceholderToBase64(
+                          GifPlaceholder(
+                            stickers.images.fixed_height.width ||
+                              stickers.images.fixed_height_downsampled.width ||
+                              50,
+                            stickers.images.fixed_height.height ||
+                              stickers.images.fixed_height_downsampled.height ||
+                              50,
+                          ),
+                        )}`}
+                        placeholder="blur"
+                      />
+                    </Content>
+                  ))}
+                </>
+              ) : (
+                <>
+                  {dataContentChannel.map((gif) => (
+                    <Content key={gif.id}>
+                      <Link
+                        href={{
+                          pathname: '/[profile]',
+                          query: {
+                            profile: `${profile}`,
+                            content: `${gif.id}`,
+                          },
+                        }}
+                        as={{
+                          pathname: `/c/${gif.id}`,
+                        }}
+                        scroll={false}
+                      >
+                        <ContentOverlay>
+                          <FontAwesomeIcon icon={faLink} size={'xl'} />
+                          <FontAwesomeIcon icon={faHeart} size={'xl'} />
+                          <p>0</p>
+                          <FontAwesomeIcon icon={faComment} size={'xl'} />
+                          <p>0</p>
+                        </ContentOverlay>
+                      </Link>
+
+                      <Image
+                        src={
+                          gif.images.fixed_height.webp ||
+                          gif.images.fixed_height.url
+                        }
+                        sizes="auto"
+                        width={
+                          gif.images.fixed_height.width ||
+                          gif.images.fixed_height_downsampled.width
+                        }
+                        height={
+                          gif.images.fixed_height.height ||
+                          gif.images.fixed_height_downsampled.height
+                        }
+                        alt="img"
+                        blurDataURL={`data:image/svg+xml;base64,${PlaceholderToBase64(
+                          GifPlaceholder(
+                            gif.images.fixed_height.width ||
+                              gif.images.fixed_height_downsampled.width ||
+                              50,
+                            gif.images.fixed_height.height ||
+                              gif.images.fixed_height_downsampled.height ||
+                              50,
+                          ),
+                        )}`}
+                        placeholder="blur"
+                      />
+                    </Content>
+                  ))}
+                </>
+              )}
             </FeaturedWrap>
           </FeaturedContent>
         </WrapChannel>

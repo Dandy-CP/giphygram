@@ -20,10 +20,16 @@ const categories = createSlice({
     ) => {
       state.dataCategories = action.payload;
     },
+    setIsFetching: (
+      state: Draft<typeof initialState>,
+      action: PayloadAction<typeof initialState.isFetching>,
+    ) => {
+      state.isFetching = action.payload;
+    },
   },
 });
 
 export const getDataCategories = (state: { CategoriesContent: DataState }) =>
   state.CategoriesContent;
-export const { setCategories } = categories.actions;
+export const { setCategories, setIsFetching } = categories.actions;
 export default categories.reducer;

@@ -9,6 +9,7 @@ import { getDataOffsetState } from '../../../config/redux/reducer/setInfiniteScr
 import setInfiniteScrollAction from '../../../config/redux/action/InfiniteScroll';
 
 import { GifPlaceholder, PlaceholderToBase64 } from '../../GifPlaceholder';
+import ContentComment from '../../Comment/ContentComment';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
@@ -24,14 +25,10 @@ import {
   Comment,
   ContentAction,
   GifContent,
-  InputCommnet,
-  LatestComment,
   Like,
-  // MainContainerTimeline,
   Share,
   TitleContent,
   UserChannel,
-  UserComment,
   WrapContent,
 } from '../../../styles/Homepage/Timeline/timeline.styled';
 
@@ -200,24 +197,7 @@ const Timeline = () => {
             <p>{data.title}</p>
           </TitleContent>
 
-          <UserComment>
-            <LatestComment>
-              <Link
-                href={`/?content=${data.id}`}
-                as={`/c/${data.id}`}
-                scroll={false}
-              >
-                <p>View all 0 comments</p>
-              </Link>
-            </LatestComment>
-
-            <hr />
-
-            <InputCommnet>
-              <textarea placeholder="Add a comment..."></textarea>
-              <button>Post</button>
-            </InputCommnet>
-          </UserComment>
+          <ContentComment />
         </CardContent>
       ))}
       {onBottom && (
