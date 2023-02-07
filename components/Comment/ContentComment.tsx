@@ -1,36 +1,40 @@
-import React, { useState, useEffect } from 'react';
-import Link from 'next/link';
+import React, { useEffect } from 'react';
+import Image from 'next/image';
+
+import { useDispatch, useSelector } from '../../config/redux/store';
+import { getDataContentAction } from '../../config/redux/reducer/setContentAction';
+import { setGetCommentDataAction } from '../../config/redux/action/contentAction';
 
 import {
-  InputCommnet,
-  LatestComment,
-  UserComment,
-} from '../../styles/Homepage/Timeline/timeline.styled';
+  CommentFromUser,
+  ContainerCommentSection,
+} from '../../styles/Homepage/Timeline/modalContent.styled';
 
-const ContentComment = () => {
-  const [inputComment, setInputComment] = useState('');
+interface IData {
+  contentID: string | string[] | undefined;
+}
+
+const CommentSection = ({ contentID }: IData) => {
+  const dispatch = useDispatch();
+  const { commentedBy } = useSelector(getDataContentAction);
+
+  console.log(commentedBy);
+
+  useEffect(() => {
+    dispatch(setGetCommentDataAction(contentID));
+  }, [dispatch, contentID]);
 
   return (
-    <UserComment>
-      <LatestComment>
-        <Link href={``} as={`/c/`} scroll={false}>
-          <p>View all 0 comments</p>
-        </Link>
-      </LatestComment>
-
-      <hr />
-
-      <InputCommnet>
-        <textarea
-          placeholder="Add a comment..."
-          onChange={(e) => {
-            setInputComment(e.target.value);
-          }}
-        ></textarea>
-        <button>Post</button>
-      </InputCommnet>
-    </UserComment>
+    <ContainerCommentSection>
+      {commentedBy.map((list: any) => (
+        <CommentFromUser key={list.comment}>
+          <Image src={list.avatar} alt="avatar" width={20} height={20} />
+          <p>{list.name}</p>
+          <p>{list.comment}</p>
+        </CommentFromUser>
+      ))}
+    </ContainerCommentSection>
   );
 };
 
-export default ContentComment;
+export default CommentSection;

@@ -17,6 +17,7 @@ import contentSearched from './reducer/setContentSearched';
 import stickersContentChannel from './reducer/setStickersContent';
 import searchStickers from './reducer/setSearchStickers';
 import userProfile from './reducer/setUserProfile';
+import contentAction from './reducer/setContentAction';
 
 export const store = configureStore({
   reducer: {
@@ -33,6 +34,7 @@ export const store = configureStore({
     ContentSearched: contentSearched,
     StickersSearch: searchStickers,
     UserProfile: userProfile,
+    ContentAction: contentAction,
   },
 });
 

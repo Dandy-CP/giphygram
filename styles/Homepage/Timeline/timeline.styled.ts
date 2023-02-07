@@ -31,6 +31,10 @@ export const CardContent = styled.article`
   margin-bottom: 30px;
   border-radius: 10px;
   background-color: ${(props: any) => props.theme.color.blackdoff};
+
+  hr {
+    border-bottom: 0px;
+  }
 `;
 
 export const UserChannel = styled.header`
@@ -125,7 +129,25 @@ export const LatestComment = styled.div`
   }
 `;
 
-export const InputCommnet = styled.div`
+export const Commented = styled.div`
+  display: flex;
+  align-items: center;
+
+  p {
+    margin-left: 10px;
+    cursor: pointer;
+
+    :last-child {
+      font-weight: 400;
+    }
+  }
+
+  img {
+    border-radius: 20px;
+  }
+`;
+
+export const InputComment = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;

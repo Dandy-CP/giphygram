@@ -7,31 +7,34 @@ import { getDataContentByIdState } from '../../config/redux/reducer/setGetConten
 import setGetContentByIdAction from '../../config/redux/action/getContentByID';
 
 import { GifPlaceholder, PlaceholderToBase64 } from '../GifPlaceholder';
+import UserInputComment from '../Comment/InputComment';
+import CommentSection from '../Comment/ContentComment';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
-  faComments,
   faHeart,
-  faShare,
+  faShareFromSquare,
   faBookmark,
+} from '@fortawesome/free-regular-svg-icons';
+import {
+  faBookmark as bookmarkFilled,
+  faHeart as heartFilled,
 } from '@fortawesome/free-solid-svg-icons';
 
 import {
   CardModalContent,
-  CommentInput,
-  CommentSection,
   ContentDescription,
   ContentInfo,
   CopyContent,
   EmbedContent,
   GIFsContent,
+  InputComment,
   MainContentCard,
   UserChannel,
 } from '../../styles/Homepage/Timeline/modalContent.styled';
 
 import {
   Bookmark,
-  Comment,
   ContentAction,
   Like,
   Share,
@@ -172,35 +175,29 @@ const ContentForModal = () => {
               </EmbedContent>
             </ContentInfo>
 
-            <CommentSection>
-              <h4>Dandy Candra</h4>
-              <p>Wah Bagus Euyy....</p>
-            </CommentSection>
+            <CommentSection contentID={content} />
 
-            <ContentAction style={{ marginLeft: '10px', marginRight: '10px' }}>
-              <Like>
-                <FontAwesomeIcon icon={faHeart} size={'lg'} />
-              </Like>
+            <InputComment>
+              <ContentAction
+                style={{ marginLeft: '10px', marginRight: '10px' }}
+              >
+                <Like>
+                  <FontAwesomeIcon icon={faHeart} size={'lg'} />
+                </Like>
 
-              <Comment>
-                <FontAwesomeIcon icon={faComments} size={'lg'} />
-              </Comment>
+                <Share>
+                  <FontAwesomeIcon icon={faShareFromSquare} size={'lg'} />
+                </Share>
 
-              <Share>
-                <FontAwesomeIcon icon={faShare} size={'lg'} />
-              </Share>
+                <Bookmark>
+                  <FontAwesomeIcon icon={faBookmark} size={'lg'} />
+                </Bookmark>
+              </ContentAction>
 
-              <Bookmark>
-                <FontAwesomeIcon icon={faBookmark} size={'lg'} />
-              </Bookmark>
-            </ContentAction>
+              <hr />
 
-            <hr />
-
-            <CommentInput>
-              <textarea placeholder="Add a comment..."></textarea>
-              <button>Post</button>
-            </CommentInput>
+              <UserInputComment contentID={content} dataContent={data} />
+            </InputComment>
           </ContentDescription>
         </MainContentCard>
       ))}

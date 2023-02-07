@@ -29,8 +29,6 @@ const Username = () => {
     dispatch(setUserProfileAction(user?.email));
   }, [dispatch, user?.email]);
 
-  console.log(user);
-
   return (
     <ContainerUsername>
       <UsernameData>

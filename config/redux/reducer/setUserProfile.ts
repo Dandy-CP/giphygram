@@ -13,6 +13,8 @@ export interface DataState {
   posted: any[];
   following: any[];
   saved: any[];
+  commented: any[];
+  liked: any[];
 }
 
 const initialState: DataState = {
@@ -20,6 +22,8 @@ const initialState: DataState = {
   posted: [],
   following: [],
   saved: [],
+  commented: [],
+  liked: [],
 };
 
 const userProfile = createSlice({
@@ -53,11 +57,31 @@ const userProfile = createSlice({
     ) => {
       state.saved = action.payload;
     },
+
+    setCommented: (
+      state: Draft<typeof initialState>,
+      action: PayloadAction<typeof initialState.commented>,
+    ) => {
+      state.commented = action.payload;
+    },
+
+    setLiked: (
+      state: Draft<typeof initialState>,
+      action: PayloadAction<typeof initialState.liked>,
+    ) => {
+      state.liked = action.payload;
+    },
   },
 });
 
 export const getDataUserProfile = (state: { UserProfile: DataState }) =>
   state.UserProfile;
-export const { setProfile, setPosted, setFollowing, setSaved } =
-  userProfile.actions;
+export const {
+  setProfile,
+  setPosted,
+  setFollowing,
+  setSaved,
+  setCommented,
+  setLiked,
+} = userProfile.actions;
 export default userProfile.reducer;

@@ -36,8 +36,13 @@ export const CloseButton = styled.div`
 
 export const CardModalContent = styled.div`
   width: 70%;
-  height: auto;
+  height: 850px;
   background-color: ${(props: any) => props.theme.color.blackdoff};
+
+  @media (-webkit-min-device-pixel-ratio: 1.25) {
+    width: 75%;
+    height: 750px;
+  }
 `;
 
 export const MainContentCard = styled.div`
@@ -57,7 +62,13 @@ export const GIFsContent = styled.div`
 
   img {
     width: 100%;
-    height: 100%;
+    height: auto;
+    max-height: 850px;
+    object-fit: cover;
+
+    @media (-webkit-min-device-pixel-ratio: 1.25) {
+      max-height: 750px;
+    }
   }
 `;
 
@@ -212,20 +223,35 @@ export const EmbedContent = styled.div`
   }
 `;
 
-export const CommentSection = styled.div`
-  display: flex;
-  align-items: center;
+export const ContainerCommentSection = styled.div`
   margin-top: 40px;
   margin-bottom: 40px;
   margin-left: 20px;
 
-  h4 {
-    margin-right: 20px;
+  p {
+    margin-left: 10px;
+    font-weight: 500;
+    cursor: pointer;
+
+    :last-child {
+      font-weight: 400;
+    }
   }
 
   @media (-webkit-min-device-pixel-ratio: 1.25) {
     font-size: 0.9rem;
   }
+`;
+
+export const InputComment = styled.div`
+  width: 100%;
+  position: absolute;
+  bottom: auto;
+`;
+
+export const CommentFromUser = styled.div`
+  display: flex;
+  align-items: center;
 `;
 
 export const CommentInput = styled.div`

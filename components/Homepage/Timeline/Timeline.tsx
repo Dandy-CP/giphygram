@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 
@@ -7,16 +7,35 @@ import { getDataTrendingState } from '../../../config/redux/reducer/setTrendingG
 import setTrendingGIFsAction from '../../../config/redux/action/trendingGIFs';
 import { getDataOffsetState } from '../../../config/redux/reducer/setInfiniteScroll';
 import setInfiniteScrollAction from '../../../config/redux/action/InfiniteScroll';
+import { getDataUserProfile } from '../../../config/redux/reducer/setUserProfile';
+import { setInputComment } from '../../../config/redux/reducer/setContentAction';
+import {
+  getDataContentAction,
+  setLikedContent,
+  setCommentedContent,
+} from '../../../config/redux/reducer/setContentAction';
+import {
+  setGetCommentDataAction,
+  setGetLikedDataAction,
+  setAddNewCommentAction,
+  setUpdateExistingCommentAction,
+  setAddNewLikedAction,
+  setUpdateExistingLikedAction,
+} from '../../../config/redux/action/contentAction';
 
 import { GifPlaceholder, PlaceholderToBase64 } from '../../GifPlaceholder';
-import ContentComment from '../../Comment/ContentComment';
+import { TimelineSkeleton } from '../../Skeleton';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
-  faComments,
   faHeart,
-  faShare,
+  faComment,
+  faShareFromSquare,
   faBookmark,
+} from '@fortawesome/free-regular-svg-icons';
+import {
+  faBookmark as bookmarkFilled,
+  faHeart as heartFilled,
 } from '@fortawesome/free-solid-svg-icons';
 
 import {
@@ -30,20 +49,34 @@ import {
   TitleContent,
   UserChannel,
   WrapContent,
+  InputComment,
+  LatestComment,
+  UserComment,
+  Commented,
 } from '../../../styles/Homepage/Timeline/timeline.styled';
 
 import defaultAva from '../../../public/userAva.gif';
 import verifiedBadge from '../../../public/icons/verifiedBadge.png';
 import Loader from '../../../public/icons/loader.gif';
 
-import { TimelineSkeleton } from '../../Skeleton';
+type Comment = {
+  IDcontent?: string;
+  avatar?: string | any;
+  name: string | any;
+  comment: string;
+};
 
 const Timeline = () => {
+  const [userComment, setUserComment] = useState<Comment | any>({});
+
   const dispatch = useDispatch();
   const { dataTrendingGIFs, IsFetching } = useSelector(getDataTrendingState);
   const { offset, onBottom } = useSelector(getDataOffsetState);
+  const { profile } = useSelector(getDataUserProfile);
+  const { commentedBy, likedBy, inputComment } =
+    useSelector(getDataContentAction);
 
-  console.log(dataTrendingGIFs);
+  console.log(likedBy);
 
   useEffect(() => {
     dispatch(setTrendingGIFsAction(offset));
@@ -56,6 +89,95 @@ const Timeline = () => {
   ).map((id) => {
     return dataTrendingGIFs.find((content: any) => content.id === id);
   });
+
+  const handleAddComment = (
+    contentID: string,
+    nameChannel: string,
+    avatarChannel: string,
+    contentTitle: string,
+    content: string,
+  ) => {
+    resultDataTrendingContent.map((data) => {
+      contentID === data.id
+        ? setUserComment({
+            IDcontent: contentID,
+            avatar: profile.avatar,
+            name: profile.name,
+            comment: inputComment,
+          })
+        : data;
+    });
+
+    dispatch(setGetCommentDataAction(contentID));
+
+    setTimeout(() => {
+      commentedBy.length === 0
+        ? setAddNewCommentAction(
+            contentID,
+            profile?.avatar,
+            profile?.name,
+            profile?.username,
+            profile?.email,
+            inputComment,
+            nameChannel,
+            avatarChannel,
+            contentTitle,
+            content,
+          )
+        : setUpdateExistingCommentAction(
+            contentID,
+            profile?.avatar,
+            profile?.name,
+            profile?.username,
+            profile?.email,
+            inputComment,
+            nameChannel,
+            avatarChannel,
+            contentTitle,
+            content,
+          );
+    }, 1500);
+
+    dispatch(setCommentedContent([]));
+  };
+
+  const handleLikeContent = (
+    contentID: string,
+    nameChannel: string,
+    avatarChannel: string,
+    contentTitle: string,
+    content: string,
+  ) => {
+    dispatch(setGetLikedDataAction(contentID));
+
+    setTimeout(() => {
+      likedBy.length === 0
+        ? setAddNewLikedAction(
+            contentID,
+            profile?.avatar,
+            profile?.name,
+            profile?.username,
+            profile?.email,
+            nameChannel,
+            avatarChannel,
+            contentTitle,
+            content,
+          )
+        : setUpdateExistingLikedAction(
+            contentID,
+            profile?.avatar,
+            profile?.name,
+            profile?.username,
+            profile?.email,
+            nameChannel,
+            avatarChannel,
+            contentTitle,
+            content,
+          );
+    }, 1500);
+
+    dispatch(setLikedContent([]));
+  };
 
   return (
     <WrapContent>
@@ -170,7 +292,17 @@ const Timeline = () => {
           </GifContent>
 
           <ContentAction>
-            <Like>
+            <Like
+              onClick={() => {
+                handleLikeContent(
+                  data.id,
+                  data?.user.username,
+                  data?.user.avatar_url,
+                  data?.title,
+                  data?.images.downsized.url,
+                );
+              }}
+            >
               <FontAwesomeIcon icon={faHeart} size={'lg'} />
             </Like>
 
@@ -180,12 +312,12 @@ const Timeline = () => {
                 as={`/c/${data.id}`}
                 scroll={false}
               >
-                <FontAwesomeIcon icon={faComments} size={'lg'} />
+                <FontAwesomeIcon icon={faComment} size={'lg'} />
               </Link>
             </Comment>
 
             <Share>
-              <FontAwesomeIcon icon={faShare} size={'lg'} />
+              <FontAwesomeIcon icon={faShareFromSquare} size={'lg'} />
             </Share>
 
             <Bookmark>
@@ -197,7 +329,75 @@ const Timeline = () => {
             <p>{data.title}</p>
           </TitleContent>
 
-          <ContentComment />
+          <UserComment>
+            <LatestComment>
+              <Link
+                href={`/?content=${data.id}`}
+                as={`/c/${data.id}`}
+                scroll={false}
+              >
+                <p>View all comments</p>
+                {userComment.IDcontent === data.id ? (
+                  <Commented>
+                    <Image
+                      src={profile.avatar}
+                      alt="avatar"
+                      width={20}
+                      height={20}
+                    />
+                    <p>{userComment.name}</p>
+                    <p>{userComment.comment}</p>
+                  </Commented>
+                ) : null}
+              </Link>
+            </LatestComment>
+
+            <hr />
+
+            <InputComment>
+              <textarea
+                placeholder="Add a comment..."
+                // onFocus={() => {
+                //   dispatch(setGetCommentDataAction(data.id));
+                // }}
+                onChange={(e) => {
+                  dispatch(setInputComment(e.target.value));
+                }}
+              />
+
+              {data.user === undefined ? (
+                <button
+                  onClick={() => {
+                    handleAddComment(
+                      data.id,
+                      'Unknown User',
+                      '',
+                      data?.title,
+                      data?.images.downsized.url,
+                    );
+                    dispatch(setInputComment(''));
+                  }}
+                >
+                  Post
+                </button>
+              ) : (
+                <button
+                  onClick={() => {
+                    handleAddComment(
+                      data.id,
+                      data?.user.username,
+                      data?.user.avatar_url,
+                      data?.title,
+                      data?.images.downsized.url,
+                    );
+                    dispatch(setInputComment(''));
+                  }}
+                >
+                  Post
+                </button>
+              )}
+            </InputComment>
+          </UserComment>
         </CardContent>
       ))}
       {onBottom && (

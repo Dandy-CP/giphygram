@@ -6,6 +6,8 @@ import {
   setPosted,
   setFollowing,
   setSaved,
+  setCommented,
+  setLiked,
 } from '../reducer/setUserProfile';
 
 const setUserProfileAction = (userEmail: string) => {
@@ -26,6 +28,14 @@ const setUserProfileAction = (userEmail: string) => {
 
         onSnapshot(doc(db, 'users', `${userEmail}`), (doc) => {
           dispatch(setSaved(doc.data()?.saved));
+        });
+
+        onSnapshot(doc(db, 'users', `${userEmail}`), (doc) => {
+          dispatch(setCommented(doc.data()?.commented));
+        });
+
+        onSnapshot(doc(db, 'users', `${userEmail}`), (doc) => {
+          dispatch(setLiked(doc.data()?.liked));
         });
       };
       getUserProfile();

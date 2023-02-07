@@ -51,6 +51,8 @@ export const AuthContextProvider = ({ children }: Props) => {
       posted: [],
       following: [],
       saved: [],
+      commented: [],
+      liked: [],
     });
   };
 
@@ -78,6 +80,8 @@ export const AuthContextProvider = ({ children }: Props) => {
           posted: [],
           following: [],
           saved: [],
+          commented: [],
+          liked: [],
         });
       } catch (err: any) {
         console.log(err.message);
